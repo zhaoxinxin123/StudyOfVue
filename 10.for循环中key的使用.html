@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- for循环使用时，key属性只能使用number或string -->
+    <!-- 注意key在使用的时候，必须使用v-bind属性绑定形式，指定key值 -->
+    <!-- 在组件中，使用v-for循环时，或者在一些特殊情况中，如果v-for有问题必须在使用v-for同时，指定唯一的字符串/数字类型 -->
+    <div id="app">
+        <label >ID:
+            <input type="text" v-model="id">
+        </label>
+        <label >Name:
+                <input type="text" v-model="name">
+        </label>
+        <label >
+            <input type="button" value="Add" @click="add">
+        </label>
+       <p v-for="item in list" :key="item.id">{{item.id}}--------------{{item.name}}</p>
+    </div>
+</body>
+<script>
+    var a = new Vue({
+        el: '#app',
+        data: {
+            id:"",
+            name:"",
+            list:[
+                {id:1,name:'zxx1'},
+                {id:2,name:'zxx2'},
+                {id:3,name:'zxx3'}
+                ]
+        },
+        methods:{
+            add(){
+                this.list.push({id:this.id,name:this.name})
+            }
+        }
+    })
+</script>
+
+</html>

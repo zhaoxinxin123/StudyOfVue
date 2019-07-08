@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <br>v-if的特点：每次都会重新创建或创建元素
+        <br>v-showde 特点：每次不会重新进行dom的删除和创建操作，只是切换元素的display：none
+        <br>v-if有较高的切换性能消耗，如果元素设计到频繁的切换，最好不要用v-if
+        <br>v-show有较高的初始渲染，如果元素永远不显示出来让用户看到
+        <input type="button" value="change" @click="change">
+        <h3 v-if="flag"> this is v-if  </h3>
+        <h3 v-show="flag"> this is v-show  </h3>
+    </div>
+</body>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            flag:true
+        },
+        methods:{
+            change(){
+                this.flag=!this.flag
+            }
+        }
+    })
+</script>
+</html>
+
+    
