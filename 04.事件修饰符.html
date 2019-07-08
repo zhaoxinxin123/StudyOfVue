@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <style>
+        .inner {
+            height: 150px;
+            background: darkcyan
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 使用  .stop 阻止冒泡 -->
+        <!-- <div class="inner"   @click="divHandler">
+                <input type="button" value="戳他"   @click.stop="btnHandler">
+        </div> -->
+        <a  href="https://www.baidu.com"  @click='linkclick'>有问题去百度</a>
+    </div>
+    <script>
+            var v=new Vue({
+                el:"#app",
+                data:{},
+                methods:{
+                    divHandler() {
+                        console.log('divHandler')
+                    },
+                    btnHandler() {
+                        console.log('btnHandler')
+                    },
+                    linkclick(){
+                        console.log("触发了点击事件")
+                    }
+                }
+            })
+        </script>
+</body>
+
+</html>

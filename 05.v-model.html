@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+      <h5> {{msg}}</h5>
+     <!-- v-bind   只能实现数据的单项绑定     -->
+      <input type="text" style="width: 100% "  :value='msg' >
+<!-- v-model     只能实现数据的单项绑定     -->
+      <input type="text" style="width: 100% "  v-model='msg' >
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg:'少年你好,愿你心依旧!'
+        },
+        methods:{
+            
+        }
+    })
+</script>
+
+</html>

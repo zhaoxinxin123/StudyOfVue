@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--  差值表达式解决前段表达式闪烁问题-->
+       <p v-cloak >{{s}}</p> 
+       <h4 v-text='s'></h4><!-- 默认v-text没有闪烁问题   ,不利于拼接,会覆盖元素中原本的内容-->
+       <!--   v-bind 绑定属性-->
+       <input type="button" value="按钮" v-bind:title="s2">
+       <input type="button" value="按钮" :title="s2">
+
+       <!--   v-on 绑定事件-->
+       <input type="button" value="绑定事件" v-on:click="fun1">
+       <input type="button" value="@" @click="fun1">
+    </div>
+    <script>
+    var app=new Vue({
+        el:"#app",
+        data:{
+            s:"闪烁问题",
+            s2:"只是自己定义的标题"
+        },
+        methods:{
+            fun1:function () {
+                alert("你好好")
+            }
+        }
+    })
+    </script>
+</body>
+</html>

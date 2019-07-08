@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <title>Document</title>
+    <style>
+        .red{
+            color: red
+        }
+        .thin{
+            font-weight: 200
+        }
+        .italic{
+            font-style: italic
+        }
+        .active{
+            letter-spacing: 0.5em
+        }
+    </style>
+</head>
+ 
+<body>
+    <div id="app">
+        <!-- 旧方式 -->
+       <h1 class="red   thin">这是个h1</h1>
+
+       <!-- 在数组中使用三元表达式 -->
+       <h1 :class="['thin','italic',flag?'active':'']">这是个h1  很大</h1>
+         <!-- 在数组中使用对象代替三元表达式 ,提高代码可读性 -->
+       <h1 :class="['thin','italic',{active:flag,red:true}]">这是个h1  很大</h1>
+        <h1 :class='styleObj1'>这是h1</h1>
+       <!-- 内联样式 -->
+       <h2 :style="{color:'red','font-weight':300}">内联样式</h2>
+       <h2 :style="styleObj2">内联样式</h2>
+       <h2 :style="[styleObj1,styleObj2]">内联样式</h2>
+    </div>
+</body>
+<script>
+    var a = new Vue({
+        el: '#app',
+        data: {
+            flag:true,
+            styleObj1:{thin:true,red:false},
+            styleObj2:{color:'red','font-weight':200,'font-style':'italic'}
+        },
+        methods:{
+            
+        }
+    })
+</script>
+
+</html>
