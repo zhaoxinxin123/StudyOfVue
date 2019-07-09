@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <title>Document</title>
+</head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+<body>
+    <div id="app">
+       <input type="button" value="Button" @click="msg='No'">
+       <h3 id="h3" v-cloak>{{msg}}</h3>
+    </div>
+</body>
+<script>
+    var a = new Vue({
+        el: '#app',
+        data: {
+            msg:'ok'
+        },
+        methods:{
+            show(){
+                console.log("执行了")
+            }
+        },
+        beforeCreate(){
+                //这是遇到的第一个生命周期函数  表示实例完全会被创建出来，会执行
+                console.log(this.msg)    //这是console回显示undefined
+                this.show()   //this.show not a method
+                //注意在beforeCreate生命周期函数执行的时候，data和methods中的数据还没有被初始化 
+            },
+            created(){
+                //这是遇到的第二个生命周期
+                console.log(this.msg)
+                this.show()
+                //在create中 data和method都已经初始化
+                //如果要调用method的方法，最早只能在create方法中调用
+            },
+            beforeMount(){
+                //这是遇到的第三个生命周期，表示模板已经编译完成，但是还没有渲染
+                console.log(document.getElementById('h3').innerText)
+                //
+            },
+            mounted(){
+
+            }
+    })
+</script>
+
+</html>
