@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 如果使用组件直接把组件的名称，以html的形式引入到页面中间即可 -->
+        <!-- 注意如果用驼峰形式的命名，要用横杠并取消大写，无论使用哪种方式创建出来的组件，组件template属性指向模板的内容，必须有且只有一个根元素-->
+        
+        <mycom></mycom>
+    </div>
+    <template id="templ">
+        <div>
+            <h3>这是定义在外部的组件</h3>
+        </div>
+    </template>
+</body>
+<script>
+      //<!-- 注意如果用驼峰形式的命名，要用横杠并取消大写，无论使用哪种方式创建出来的组件，组件template属性指向模板的内容，必须有且只有一个根元素-->
+        Vue.component('mycom',{
+            template:'#templ'
+        })
+    var a = new Vue({
+        el: '#app',
+        data: {
+        },
+        methods:{
+            
+        }
+    })
+</script>
+
+</html>

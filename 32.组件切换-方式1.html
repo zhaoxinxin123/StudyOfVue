@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <link rel="stylesheet" href="./lib/bootstrap.css">
+    <title>Document</title>
+</head>
+    <style>
+        a,h3{
+            padding-left: 15px
+        }
+    </style>
+<body>
+    <div id="app">
+        <a href="" @click.prevent="flag=true">Login</a>
+        <a href="" @click.prevent="flag=false">Sign Up</a>
+        <login v-if="flag"></login>
+        <register v-else="flag"></register>
+    </div>
+    <template id="templ1">
+        <div>
+            <h3>登录</h3>
+        </div>
+    </template>
+    <template id="templ2">
+        <div>
+            <h3>注册</h3>
+        </div>
+    </template>
+</body>
+<script>
+    Vue.component('login',{
+        template:'#templ1'
+    })
+    Vue.component('register',{
+        template:'#templ2'
+    })
+
+
+
+      var vm =new Vue({
+          el:"#app",
+          data:{
+              flag:true
+          },
+          methods: {
+              
+          },
+
+      })
+</script>
+
+</html>

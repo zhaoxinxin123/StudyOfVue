@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <link rel="stylesheet" href="./lib/animate.css">
+</head>
+<style>
+    [v-cloak]{
+        display: none;
+    }
+</style>
+<body>
+    <div id="app">
+        <h1 v-cloak v-color>{{date | dateFormat}}</h1>
+        <input type="button" value="戳我" @click="change">
+        <transition enter-active-class="bounceIn" leave-active-class="bounceInDown"  :duration="{enter:400,leave:400}">
+            <p v-if="flag"> this is animate </p>
+        </transition>
+    </div>
+</body>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                flag:true,
+                date:new Date()
+            },
+            methods:{
+                change(){
+                    this.flag=!this.flag
+                }
+            },
+            //自定义过滤器
+            filters:{
+                dateFormat(dateStr){
+                    var dt=new Date(dateStr)
+                    var y=dt.getFullYear()
+                    var m=(dt.getMonth()).toString().padStart(2,'0')
+                    var d=(dt.getDay()).toString().padStart(2,'0')
+                    var hh=(dt.getHours()).toString().padStart(2,'0')
+                    var mm=(dt.getMinutes()).toString().padStart(2,'0')
+                    var ss=(dt.getSeconds()).toString().padStart(2,'0')
+                    return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+                }
+            },
+            //自定义指令
+            directives:{
+                color(el){
+                    el.style.color="blue"
+                }
+            }
+        })
+    </script>
+</html>

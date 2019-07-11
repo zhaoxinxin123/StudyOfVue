@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="Get method" @click="getInfo">
+        <input type="button" value="Post method" @click="postInfo">
+        <input type="button" value="Jsonp 请求" @click="jsonpInfo">
+    </div>
+</body>
+<script>
+    var a = new Vue({
+        el: '#app',
+        data: {
+        },
+        methods:{
+            getInfo(){
+                this.$http.get('http://localhost/StudyOfVue/17.vue-resource%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8.html').then((result)=>{
+                    console.log(result)
+                })
+            },
+            postInfo(){
+                //手动发起的post请求默认没有表单格式，有的服务器处理不了
+                        //通过设置post方法第三个参数{emulateJSON: true}设置提交的内容类型为普通表单数据格式
+                        //三个参数，第一个参数是url地址，第二个参数是提交的数据内容，第三个是提交的格式
+                        this.$http.post('http://member.china6688.com/myfa.php',{},{emulateJSON:true}).then(result=>{
+                            console.log(result.body)
+                        })
+            },
+            jsonpInfo(){
+                this.$http.jsonp('http://localhost/StudyOfVue/14.%E5%93%81%E7%89%8C%E5%88%97%E8%A1%A8%E6%A1%88%E4%BE%8B2.html ').then(result=>{
+                            console.log(result.body)
+                        })  
+            }
+        }
+    })
+</script>
+
+</html>

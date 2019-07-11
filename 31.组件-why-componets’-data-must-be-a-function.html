@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <link rel="stylesheet" href="./lib/bootstrap.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <mycom></mycom>
+        <mycom></mycom>
+        <mycom></mycom>
+    </div>
+   <template id="templ">
+       <div>
+           <input type="button" class="btn btn-primary" value="Plus one" @click="increment">
+           <h3>{{count}}</h3>
+        </div>
+   </template>
+</body>
+<script>
+        //组件可以有自己的data数据
+        //组件中的data必须是一个方法
+        //组件中的data数据使用方法和实例中的data使用方法是一样的
+      Vue.component('mycom',{
+          template:"#templ",
+          data(){
+            return {
+                count:0
+            }
+          },
+          methods:{
+            increment(){
+                this.count++
+            }
+          }
+      })
+    var a = new Vue({
+        el: '#app',
+        data: {
+            msg:"这是实例中的数据"
+        },
+        methods:{
+            show(){
+                console.log("实例中的方法被调用")
+            }
+        }
+    })
+</script>
+
+</html>

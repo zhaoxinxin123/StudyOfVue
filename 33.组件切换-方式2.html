@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <link rel="stylesheet" href="./lib/bootstrap.css">
+    <title>Document</title>
+</head>
+    <style>
+        a,h3{
+            padding-left: 15px
+        }
+    </style>
+<body>
+    <div id="app">
+        <a href="" @click.prevent="comName='login'">Login</a>
+        <a href="" @click.prevent="comName='register'">Sign Up</a>
+     <!-- vue提供的元素来展示对应名称的组件
+     component是一个占位符，：is属性可以指定要来展示的元素 -->
+     <component :is="comName"></component>
+    </div>
+    <template id="templ1">
+        <div>
+            <h3>登录</h3>
+        </div>
+    </template>
+    <template id="templ2">
+        <div>
+            <h3>注册</h3>
+        </div>
+    </template>
+</body>
+<script>
+    Vue.component('login',{
+        template:'#templ1'
+    })
+    Vue.component('register',{
+        template:'#templ2'
+    })
+
+
+
+      var vm =new Vue({
+          el:"#app",
+          data:{
+              comName:'login'
+          },
+          methods: {
+              
+          },
+
+      })
+</script>
+
+</html>

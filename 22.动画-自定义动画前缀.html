@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <style>
+          /* v-enter 这是一个时间点  是进入之前，元素的起始状态，此时还没有开始进入
+        v-leave-to  这是一个时间点  是动画离开之后的终止状态，此时动画已经结束 */
+    .v-enter,
+    .v-leave-to{
+        opacity: 0;
+        transform: translateX(180px);
+    }
+    /*
+        v-enter-active  入场时间段
+        v-leave-active  出场时间段
+        */
+    .v-enter-active,
+    .v-leave-active{
+        transition: all.4s ease;
+    }
+
+    /*
+    自定义动画
+    */
+    .my-enter,
+    .my-leave-to{
+        opacity: 0;
+        transform: translateX(180px);
+    }
+    .my-enter-active,
+    .my-leave-active{
+        transition: all.4s ease;
+    }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="戳我" @click="change">
+        <transition class="my">
+            <p v-if="flag">this is user-defined</p>
+        </transition>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        //数据
+        data:{
+            flag:true
+        },
+        // 事件绑定的方法
+        methods:{
+            change(){
+                this.flag=!this.flag
+            }
+        },
+        //  编写  过滤器
+        filters:{
+
+        },
+        //编写自定义 指令
+        directives:{
+
+        }
+    })
+</script>
+</html>

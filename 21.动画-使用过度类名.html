@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <style>
+        /* v-enter 这是一个时间点  是进入之前，元素的起始状态，此时还没有开始进入
+        v-leave-to  这是一个时间点  是动画离开之后的终止状态，此时动画已经结束 */
+
+        .v-enter,
+        .v-leave-to{
+            transform: translate(180px) /*位移*/
+        }
+
+        /*
+        v-enter-active  入场时间段
+        v-leave-active  出场时间段
+        */
+        .v-enter-active,
+        .v-leave-active{
+            transition: all.5s ease;
+        }
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+       
+        <h3>需求点击按钮，h3显示，再次点击让h3隐藏</h3>
+        <input type="button" value="toggle" @click="change">
+        <div>
+                <p v-cloak v-color>{{date | dateFormat}}</p>
+            <transition>
+                <p v-if="flag"> This is h3
+            </transition>
+           
+        </div>
+
+    </div>
+</body>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            flag:true,
+            date:new Date()
+        },
+        methods:{
+            change(){
+                this.flag=!this.flag
+            
+            }
+        },
+        //编写过滤器在这里
+        filters:{
+            dateFormat(dateStr){
+                //格式化日期
+                var dt=new Date(dateStr)
+                var y=dt.getFullYear()
+                var m=(dt.getMonth()).toString().padStart(2,'0')
+                var d=(dt.getDay()).toString().padStart(2,'0')
+                var hh=(dt.getHours()).toString().padStart(2,'0')
+                var mm=(dt.getMinutes()).toString().padStart(2,'0')
+                var ss=(dt.getSeconds()).toString().padStart(2,'0')
+                return `${y}-${m}-${d}   ${hh}:${mm}:${ss}`
+            }
+        },
+        //编写自定义指令
+        directives:{
+            color(el){
+                el.style.color="red"
+            }
+        }
+    })
+</script>
+</html>

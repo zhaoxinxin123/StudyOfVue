@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <mylogin></mylogin>
+        <mylogin2></mylogin2>
+        <login></login>
+       
+    </div>
+</body>
+<script>
+    //通过对象字面量的形式
+    var login={
+        template:' <h1>this is a h1</h1>'
+    }
+  Vue.component('mylogin',login)
+    var a = new Vue({
+        el: '#app',
+        data: {
+        },
+        methods:{
+            
+        },
+        components:{
+            'mylogin2':login,
+            login
+        }
+    })
+</script>
+
+</html>
