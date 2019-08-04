@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <script src="./lib/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <com :data1='data1' @func="getMsgFromSon"></com>
+    </div>
+    <template id="son">
+        <div>
+            <h3>----------{{data1}}------</h3>
+            <input type="button" value="给父组件传值" @click="sendMsg">
+        </div>
+    </template>
+
+</body>
+<script>
+
+    var com = {
+        template:"#son",
+        props:['data1'],
+        data(){
+            return {
+                sonmsg:"hi dady"
+            }
+        },
+        methods: {
+            sendMsg(){
+                this.$emit('func',this.sonmsg)
+                console.log(this.sonmsg)
+            }
+        },
+    }
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            data1:"data from father",
+            msgFromSon:""
+        },
+        methods: {
+            getMsgFromSon(data){
+                this.msgFromSon=data
+            }
+        },
+        components:{
+            com
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <script src="./lib/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <router-view name="HeadPart"></router-view>
+        <div>
+                <router-view name="LeftPart"></router-view>
+                <router-view name="MainPart"></router-view>
+        </div>
+    </div>
+    <template id="head">
+        <div>
+            <h1>头部栏目</h1>
+        </div>
+    </template>
+    <template id="main">
+        <div>
+            <h1>主题栏目</h1>
+        </div>
+    </template>
+    <template id="left">
+        <div>
+            <h1>left左边栏目</h1>
+        </div>
+    </template>
+</body>
+<script>
+    var head={
+        template:"#head"
+    }
+    var main={
+        template:"#main"
+    }
+    var left={
+        template:"#left"
+    }
+
+    var router=new VueRouter({
+        routes:[
+            {
+                path:'/',
+                components:{
+                    'HeadPart':head,
+                    'LeftPart':left,
+                    'MainPart':main,
+                }
+            }
+        ]
+    })
+
+    var vm=new Vue({
+        el:"#app",
+        data:{},
+        methods: {
+            
+        },
+        router
+    })
+</script>
+</html>

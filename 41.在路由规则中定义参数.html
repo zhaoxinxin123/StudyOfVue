@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <script src="./lib/vue-router.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/login?id=10&name=哈哈">登录</router-link>
+        <router-link to="/register">注册</router-link>
+       <router-view></router-view>
+    </div>
+    <template id="temp1">
+        <div>
+            <h2>登录</h2>
+        </div>
+    </template>
+    <template id="temp2">
+            <div>
+                <h2>注册</h2>
+            </div>
+        </template>
+</body>
+<script>
+    var login={
+        template:"#temp1",
+        data(){
+            return {
+
+            }
+        }
+    }
+    var register={
+        template:"#temp2",
+        data(){
+            return {
+
+            }
+        }
+    }
+    var router=new VueRouter({
+       routes: [
+       {path:'/login',component:login},
+        {path:'/register',component:register},
+        {path:'/',redirect:'/login'},
+       ]
+    })
+    var login
+    var a = new Vue({
+        el: '#app',
+        data: {
+        },
+        methods:{
+            
+        },
+        router,
+    })
+</script>
+
+</html>

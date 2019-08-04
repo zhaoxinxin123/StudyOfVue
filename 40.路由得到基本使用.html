@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+    <script src="./lib/vue-router.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    /* 这是路由的默认格式   */
+    /* .router-link-active{
+        color: red;
+        font-weight: 800;
+        font-style: italic;
+        font-size: 80px;
+        text-decoration: underline;
+        background-color: chocolate;
+    } */
+    /* 自定义路由格式    需要在路由规则下面添加   */
+    .myactive{
+        color: red;
+        font-weight: 800;
+        font-style: italic;
+        font-size: 80px;
+        text-decoration: underline;
+        background-color: chocolate;
+    }
+</style>
+<body>
+    <div id="app">
+       <a href="#/login">登录</a>
+       <a href="#/register">注册</a>
+       <br>
+       <!-- router-link默认渲染一个a标签，可以用tag修改 -->
+       <router-link to="/login" tag="span">登录</router-link>
+       <router-link to="/register">注册</router-link>
+       <router-view></router-view>
+    </div>
+    <template id="templ">
+        <h1>登录</h1>
+    </template>
+    <template id="templ2">
+        <h1>注册</h1>
+    </template>
+</body>
+<script>
+    var login={
+        template:"#templ"
+    }
+    var register={
+        template:"#templ2"
+    }
+
+    //创建一个路由对象，导入vue-router之后，windows全局对象中，就有了一个路由的构造函数交VueRouter
+    var routerObj=new VueRouter({
+        routes:[
+            //路由匹配规则
+            /*
+            路由匹配规则都是一个对象，这个规则对象有两个必须的属性
+            属性一    path   表示监听哪个路由连接地址
+            属性二    component   表示如果路由是前面匹配到的path，则展示component属性对应的组件
+             */ 
+            //注意component属性值必须是一个组件的模板对象   不能是组件的引用名称
+
+            {path:'',redirect:'/login'},
+            {path:'/login',component:login},
+            {path:'/register',component:register},
+           
+
+        ],
+        //linkActiveClass:'myactive'
+    })
+    var a = new Vue({
+        el: '#app',
+        data: {
+        },
+        methods:{
+            
+        },
+        //将路由规则对象注册到vm  实例上，用来监听url地址的变化，然后展示对应的组件
+        router:routerObj
+    })
+</script>
+
+</html>

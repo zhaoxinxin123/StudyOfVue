@@ -18,26 +18,14 @@
     </div>
     <template id="templ">
         <div>
-            <h3>{{msg}}</h3>
+            <h3>这是定义在外部的组件</h3>
         </div>
     </template>
 </body>
 <script>
-        //组件可以有自己的data数据
-        //组件中的data必须是一个方法
-        //组件中的data数据使用方法和实例中的data使用方法是一样的
+      //<!-- 注意如果用驼峰形式的命名，要用横杠并取消大写，无论使用哪种方式创建出来的组件，组件template属性指向模板的内容，必须有且只有一个根元素-->
         Vue.component('mycom',{
-            template:'#templ',
-            data(){
-                return {
-                    msg:"这是组件data定义的数据"
-                }
-            },
-            methods:{
-                show(){
-                    console.log('组件中的方法被调用了')
-                }
-            }
+            template:'#templ'
         })
     var a = new Vue({
         el: '#app',
